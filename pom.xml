@@ -10,6 +10,7 @@
     <modules>
         <module>eureka-registry</module>
         <module>eureka-provider</module>
+        <module>eureka-consumer</module>
     </modules>
     <packaging>pom</packaging>
     <name>spring cloud study</name>

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/eureka-consumer/eureka-consumer.iml" filepath="$PROJECT_DIR$/eureka-consumer/eureka-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka-provider/eureka-provider.iml" filepath="$PROJECT_DIR$/eureka-provider/eureka-provider.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka-registry/eureka-registry.iml" filepath="$PROJECT_DIR$/eureka-registry/eureka-registry.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-cloud-study.iml" filepath="$PROJECT_DIR$/spring-cloud-study.iml" />
