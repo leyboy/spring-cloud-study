@@ -1,3 +1,4 @@
 spring:
   profiles:
-    active: v1
+    active: v2
+

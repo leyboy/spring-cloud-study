@@ -9,12 +9,17 @@
         <module name="eureka-consumer" />
         <module name="eureka-provider" />
         <module name="eureka-registry" />
+        <module name="feign-api" />
+        <module name="feign-consumer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="eureka-consumer" target="1.8" />
+      <module name="eureka-feign" target="1.8" />
       <module name="eureka-provider" target="1.8" />
       <module name="eureka-registry" target="1.8" />
+      <module name="feign-api" target="1.8" />
+      <module name="feign-consumer" target="1.8" />
       <module name="spring-cloud-study" target="1.8" />
     </bytecodeTargetLevel>
   </component>

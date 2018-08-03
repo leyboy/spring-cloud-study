@@ -1,12 +1,15 @@
+
 server:
   port: 1111
-
 
 eureka:
   server:
     enable-self-preservation: false #关闭保护机制
     eviction-interval-timer-in-ms: 6000 #剔除失效服务间隔
   instance:
+    #修改页面访问路径(相对路径)
+    health-check-url-path: /${endpoints.health.path}
+    status-page-url-path: /${endpoints.info.path}
     hostname: localhost
   client:
     registerWithEureka: false #该应用是注册中心,代表不向注册中心注册自己
@@ -18,12 +21,10 @@ spring:
   application:
     name: eureka-service-registry
 
-
-#actuator配置
-management:
-  security:
-    enabled: false #关闭安全认证
-  port: 50030
+#安全考虑,直接修改默认的eureka的状态页和健康监测URL
+endpoints:
   health:
-    mail:
-      enabled: false
+    path: /checkHealth
+  info:
+    path: /appInfo
+
