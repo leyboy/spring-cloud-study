@@ -4,9 +4,7 @@ import com.ley.springcloud.consumer.bean.User;
 import com.ley.springcloud.consumer.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,5 +50,31 @@ public class UserController {
             userList.add(user);
         });
         return userList.get(0);
+    }
+
+
+    /**
+     * 同步调用带请求缓存
+     **/
+    @GetMapping(value = "/users3/{id}")
+    public User getUserByIdAndCache(@PathVariable Integer id) {
+        return userService.getUserByIdAndGroup(id);
+
+    }
+
+
+    /**
+     * 同步调用
+     **/
+    @PostMapping(value = "/users")
+    public Boolean addUser(@RequestBody User user) {
+        log.info("user: {}",user);
+        return userService.updateUser(user);
+    }
+
+
+    @GetMapping(value = "/findUserById")
+    public User findUserById(@RequestParam Integer id){
+        return userService.find(id);
     }
 }

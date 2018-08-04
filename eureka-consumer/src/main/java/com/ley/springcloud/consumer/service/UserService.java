@@ -2,21 +2,25 @@ package com.ley.springcloud.consumer.service;
 
 import com.ley.springcloud.consumer.bean.User;
 import com.ley.springcloud.consumer.utils.ServiceInstanceConstants;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCollapser;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.netflix.hystrix.contrib.javanica.annotation.ObservableExecutionMode;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheKey;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheRemove;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import com.netflix.hystrix.contrib.javanica.command.AsyncResult;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import rx.Observable;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
+
 
 @Service
 @Slf4j
@@ -50,9 +54,8 @@ public class UserService {
      * 属性作为缓存Key
      **/
     @CacheResult
-    @HystrixCommand(commandKey = "getUserByIdAndGroup",groupKey = "userGroup",
-        threadPoolKey = "getUserByIdAndGroupThread")
-    public User getUserByIdAndGroup(@CacheKey("userId") Integer id) {
+    @HystrixCommand(commandKey = "getUserByIdAndGroup")
+    public User getUserByIdAndGroup(@CacheKey Integer id) {
         log.info("http://" + ServiceInstanceConstants.SERVICE_INSTANCE_EUREKA_PROVIDER +
                 "/users/{}", id);
         return restTemplate.getForObject("http://" + ServiceInstanceConstants.SERVICE_INSTANCE_EUREKA_PROVIDER +
@@ -60,6 +63,12 @@ public class UserService {
     }
 
 
+    @CacheRemove(commandKey = "getUserByIdAndGroup")
+    @HystrixCommand
+    public boolean updateUser(@CacheKey("id") User user){
+        return restTemplate.postForObject("http://" + ServiceInstanceConstants.SERVICE_INSTANCE_EUREKA_PROVIDER +
+                "/users",user,Boolean.class);
+    }
 
 
 
@@ -104,6 +113,26 @@ public class UserService {
                 observe.onError(e);
             }
         });
+    }
+
+
+    /**
+     * 请求合并器
+     * **/
+    @HystrixCollapser(batchMethod = "findAll",collapserProperties = {
+            @HystrixProperty(name = "timerDelayInMilliseconds",value = "100")
+    })
+    public User find(Integer id){
+        return null;
+    }
+
+
+    @HystrixCommand
+    public List<User> findAll(List<Integer> ids){
+        String str = StringUtils.join(ids,",");
+        User[] users =  restTemplate.getForObject("http://" + ServiceInstanceConstants.SERVICE_INSTANCE_EUREKA_PROVIDER +
+                "/users1/{1}", User[].class,str);
+        return Arrays.asList(users);
     }
 
 

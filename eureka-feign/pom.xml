@@ -12,8 +12,16 @@
     <modules>
         <module>feign-api</module>
         <module>feign-consumer</module>
+        <module>feign-provider</module>
     </modules>
     <artifactId>eureka-feign</artifactId>
 
+    <dependencies>
+        <!-- spring-cloud-starter-feign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
