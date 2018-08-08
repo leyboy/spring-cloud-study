@@ -1,0 +1,13 @@
+
+feign:
+  compression:
+    request:
+      #请求压缩的大小下限(默认值)
+      min-request-size: 2048
+      #请求数据类型(默认值)
+      mime-types: text/html,application/xml,application/json
+logging:
+  level:
+    com.ley.springcloud.feign.consumer.service.HelloService: debug
+
+#日志配置

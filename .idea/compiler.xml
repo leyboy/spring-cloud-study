@@ -6,19 +6,28 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="eureka-bus" />
+        <module name="eureka-client" />
         <module name="eureka-consumer" />
         <module name="eureka-provider" />
         <module name="eureka-registry" />
+        <module name="eureka-server" />
+        <module name="eureka-zuul" />
         <module name="feign-api" />
         <module name="feign-consumer" />
         <module name="feign-provider" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="eureka-bus" target="1.8" />
+      <module name="eureka-client" target="1.8" />
+      <module name="eureka-config" target="1.8" />
       <module name="eureka-consumer" target="1.8" />
       <module name="eureka-feign" target="1.8" />
       <module name="eureka-provider" target="1.8" />
       <module name="eureka-registry" target="1.8" />
+      <module name="eureka-server" target="1.8" />
+      <module name="eureka-zuul" target="1.8" />
       <module name="feign-api" target="1.8" />
       <module name="feign-consumer" target="1.8" />
       <module name="feign-provider" target="1.8" />

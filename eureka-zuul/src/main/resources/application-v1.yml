@@ -1,0 +1,25 @@
+server:
+  port: 9091
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10 #服务续约
+    lease-expiration-duration-in-seconds: 15 #服务剔除>服务续约时间
+
+
+spring:
+  application:
+    name: eureka-zuul
+
+#配置Zuul路由规则
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: eureka-provider
+    #api-a-url:
+    #  path: /api-a-url/**
+    #  url: http://localhost:${server.port}/

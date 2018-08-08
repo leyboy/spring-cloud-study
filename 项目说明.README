@@ -1,0 +1,13 @@
+
+模块说明:
+eureka-registry:spring cloud eureka
+eureka-consumer:spring cloud eureka,spring cloud ribbon,spring cloud hystrix
+eureka-provider:spring cloud eureka
+eureka-feign:spring cloud feign
+eureka-config:spring cloud config
+eureka-zuul:spring cloud zuul
+
+问题解决:
+1:解决了使用${random.int}造成eureka启动端口和tomcat启动端口不一致的情况,见项目eureka-provider中
+RandomServerPort,RandomServerPortPropertySource,RandomServerPortApplicationEnvironmentPreparedEventListener,
+EurekaProviderApplication这些类实现

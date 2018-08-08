@@ -12,6 +12,9 @@
         <module>eureka-provider</module>
         <module>eureka-consumer</module>
         <module>eureka-feign</module>
+        <module>eureka-zuul</module>
+        <module>eureka-config</module>
+        <module>eureka-bus</module>
     </modules>
     <packaging>pom</packaging>
     <name>spring cloud study</name>
