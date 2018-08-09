@@ -13,17 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class HelloController {
 
-    @Value("${server.address}")
-    private String serverAddress;
+    @Value("${from}")
+    private String from;
 
     @Autowired
     private Environment environment;
 
-    @GetMapping("/serverAddress")
-    public String serverAddress(){
+    @GetMapping("/from")
+    public String from(){
         log.info("profile {},name {},uri {}", environment.getProperty("spring.cloud.config.profile"),
                 environment.getProperty("spring.application.name"),
                 environment.getProperty("spring.cloud.config.uri"));
-        return serverAddress;
+        log.info(from);
+        return from;
     }
 }

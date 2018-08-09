@@ -5,9 +5,9 @@ spring:
   cloud:
     config:
       #对应配置文件中的{profile}
-      profile: v1,v2
+      profile: v1
       #对应配置文件中的{master}
       label: master
       uri: http://localhost:9099/
       #对spring.application.name进行覆盖
-      name: server,jdbc
+      name: server

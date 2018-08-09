@@ -1,2 +1,13 @@
 server:
   port: 9095
+
+spring:
+  rabbitmq:
+    host: softyuan.cn
+    port: 5672
+    username: root
+    password: root
+
+management:
+  security:
+    enabled: false

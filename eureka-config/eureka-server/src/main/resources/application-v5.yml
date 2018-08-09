@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: config-bus-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/ley1996/spring-cloud-study.git
+          search-paths: config-server
+          username: 海渊
+          password: liu1234567
+
+server:
+  port: 9099
+
+management:
+  security:
+    enabled: false
+
+#配置服务注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
